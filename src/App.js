@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {connect} from 'react-redux';
+import Menu from './components/Menu';
+import {toggleItemSelection} from './redux/actions';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = (props) => (
+  <div>
+    <h1>Restaurant Menu</h1>
+    <Menu {...props} />
+  </div>
+);
 
-export default App;
+const mapStateToProps = ({ menu }) => menu;
+export default connect(mapStateToProps, {
+  toggleItemSelection
+})(App);
